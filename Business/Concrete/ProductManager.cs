@@ -3,18 +3,13 @@ using Business.Contants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
     public class ProductManager : IProductService
     {
         private IProductDal _productDal;
-        public ProductManager(IProductDal productDal) 
+        public ProductManager(IProductDal productDal)
         {
             _productDal = productDal;
 
@@ -27,28 +22,28 @@ namespace Business.Concrete
 
         public IResult Delete(Product product)
         {
-           _productDal.Delete(product);
+            _productDal.Delete(product);
             return new SuccessResult(Messages.ProductDeleted);
         }
 
         public IDataResult<Product> GetById(int productid)
         {
-            return  new SuccessDataResult<Product>    ( _productDal.Get(p => p.ProductID == productid));
-        }   
+            return new SuccessDataResult<Product>(_productDal.Get(p => p.ProductID == productid));
+        }
 
-        public IDataResult <List<Product>> GetList()
+        public IDataResult<List<Product>> GetList()
         {
-            return new SuccessDataResult<List<Product>>(  _productDal.GetList().ToList());
+            return new SuccessDataResult<List<Product>>(_productDal.GetList().ToList());
         }
 
         public IDataResult<List<Product>> GetListByCategory(int categoryID)
         {
-           return new SuccessDataResult<List<Product>>(_productDal.GetList(p=>p.CategoryID == categoryID).ToList()) ;
+            return new SuccessDataResult<List<Product>>(_productDal.GetList(p => p.CategoryID == categoryID).ToList());
         }
 
         public IResult Update(Product product)
         {
-           _productDal.Update(product);
+            _productDal.Update(product);
             return new SuccessResult(Messages.ProductUpdated);
         }
     }

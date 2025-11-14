@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Business.Abstract;
+﻿using Business.Abstract;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Mvc;
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -11,10 +10,10 @@ namespace WebAPI.Controllers
         private IProductService _productService;
         public ProductsController(IProductService productService)
         {
-            _productService= productService;
+            _productService = productService;
         }
 
-        [HttpGet( "getAll")]
+        [HttpGet("getAll")]
         public IActionResult GetList()
         {
             var result = _productService.GetList();

@@ -1,9 +1,4 @@
 ﻿using Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -15,9 +10,9 @@ namespace Core.DataAccess.EntityFramework
     {
         public void Add(TEntity entity)
         {
-            using (var context= new  TContext())
-            { 
-                var addedEntry=context.Entry(entity);
+            using (var context = new TContext())
+            {
+                var addedEntry = context.Entry(entity);
                 addedEntry.State = EntityState.Added;
                 context.SaveChanges();
             }
@@ -45,10 +40,10 @@ namespace Core.DataAccess.EntityFramework
         {
             using (var context = new TContext())
             {
-                return filter == null 
+                return filter == null
                     ? context.Set<TEntity>().ToList()
                     : context.Set<TEntity>().Where(filter).ToList();
-               }
+            }
         }
 
         public void Update(TEntity entity)
